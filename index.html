@@ -1,24 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Akash Deshapathi | Robotics & AI Engineer</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="stylesheet" href="css/main.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Akash Deshapathi - Robotics & AI</title>
+  <link rel="stylesheet" href="css/main.css">
 </head>
-
 <body>
-  <main class="hero">
+
+  <canvas id="bg"></canvas>
+  <div id="chatbot-root"></div>
+
+  <header class="top">
     <h1>Akash Deshapathi</h1>
     <p class="subtitle">
       Robotics • AI Systems • Simulation • ROS2
     </p>
+  </header>
 
-    <button id="play-intro">▶ Play Intro</button>
+  <main class="center">
+    <section class="skills fade-in">
+      <h2>Skills</h2>
+      <p>Robotics, SLAM, ROS2, AI Pipelines, Simulation</p>
+    </section>
+
+    <section class="projects fade-in delay-1">
+      <h2>Projects</h2>
+      <p>Selected work coming soon</p>
+    </section>
   </main>
 
-  <audio id="intro-audio" src="assets/audio/intro.mp3"></audio>
+  <footer class="bottom">
+    <p class="trademark">© 2026 Akash Deshapathi</p>
+    <div class="cta">
+      <a href="pages/contact.html" data-link>Work With Me</a>
+      <a href="pages/contact.html" data-link>Hire Me</a>
+    </div>
+  </footer>
 
-  <script src="js/main.js"></script>
+  <script type="module" src="js/main.js"></script>
 </body>
 </html>

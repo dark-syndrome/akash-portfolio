@@ -1,12 +1,8 @@
-const btn = document.getElementById("play-intro");
-const audio = document.getElementById("intro-audio");
+import { initApp } from "./core/app.js";
+import "./effects/background.js";
+import "./effects/animations.js";
+import "./effects/audio.js";
+import "./chatbot/widget.js";
 
-btn.addEventListener("click", () => {
-  if (audio.paused) {
-    audio.play();
-    btn.textContent = "⏸ Playing…";
-  } else {
-    audio.pause();
-    btn.textContent = "▶ Play Intro";
-  }
-});
+document.addEventListener("DOMContentLoaded", initApp);
+
