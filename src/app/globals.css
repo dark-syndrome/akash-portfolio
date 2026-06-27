@@ -1,0 +1,241 @@
+@import "tailwindcss";
+
+@theme inline {
+  --font-sans: var(--font-syne), system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains), "Courier New", monospace;
+}
+
+@theme {
+  --color-primary: #00d4ff;
+  --color-secondary: #7b2fff;
+  --color-accent: #00ff88;
+  --color-dark: #05050a;
+  --color-panel: #0d0d18;
+  --color-light: #e8e8f0;
+  --color-faded: #5a5a7a;
+  --color-edge: #1a1a2e;
+}
+
+:root {
+  --c-primary: #00d4ff;
+  --c-secondary: #7b2fff;
+  --c-accent: #00ff88;
+  --c-bg: #05050a;
+  --c-surface: #0d0d18;
+  --c-text: #e8e8f0;
+  --c-muted: #5a5a7a;
+  --c-border: rgba(255, 255, 255, 0.06);
+}
+
+html {
+  scroll-behavior: auto;
+  color-scheme: dark;
+}
+
+body {
+  background-color: var(--c-bg);
+  color: var(--c-text);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background: rgba(0, 212, 255, 0.18);
+  color: var(--c-primary);
+}
+
+::-webkit-scrollbar {
+  width: 3px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 212, 255, 0.25);
+  border-radius: 2px;
+}
+
+/* ── Keyframes ─────────────────────────────────────── */
+
+@keyframes aurora {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.7;
+  }
+  25% {
+    transform: translate(3%, -2%) scale(1.06);
+    opacity: 0.9;
+  }
+  50% {
+    transform: translate(-2%, 4%) scale(0.96);
+    opacity: 0.6;
+  }
+  75% {
+    transform: translate(1%, 1%) scale(1.02);
+    opacity: 0.8;
+  }
+}
+
+@keyframes gradient-pan {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes float-y {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes pulse-dot {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.4;
+    transform: scale(0.8);
+  }
+}
+
+/* ── Utility classes ───────────────────────────────── */
+
+.gradient-text {
+  background: linear-gradient(
+    135deg,
+    var(--c-primary) 0%,
+    var(--c-secondary) 50%,
+    var(--c-accent) 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradient-pan 6s linear infinite;
+}
+
+.glass {
+  background: rgba(13, 13, 24, 0.65);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  transition: border-color 0.3s ease;
+}
+
+.glass:hover {
+  border-color: rgba(0, 212, 255, 0.15);
+}
+
+.glow-primary {
+  box-shadow: 0 0 24px rgba(0, 212, 255, 0.2);
+}
+
+/* ── Aurora background ─────────────────────────────── */
+
+.aurora-bg {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.aurora-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(70px);
+}
+
+.aurora-1 {
+  width: 65vw;
+  height: 65vw;
+  background: radial-gradient(
+    circle,
+    rgba(0, 212, 255, 0.11) 0%,
+    transparent 70%
+  );
+  top: -25%;
+  left: -20%;
+  animation: aurora 13s ease-in-out infinite;
+}
+
+.aurora-2 {
+  width: 55vw;
+  height: 55vw;
+  background: radial-gradient(
+    circle,
+    rgba(123, 47, 255, 0.14) 0%,
+    transparent 70%
+  );
+  top: 5%;
+  right: -18%;
+  animation: aurora 17s ease-in-out infinite reverse;
+}
+
+.aurora-3 {
+  width: 45vw;
+  height: 45vw;
+  background: radial-gradient(
+    circle,
+    rgba(0, 255, 136, 0.07) 0%,
+    transparent 70%
+  );
+  bottom: -12%;
+  left: 25%;
+  animation: aurora 15s ease-in-out infinite 3s;
+}
+
+.grid-pattern {
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(
+      rgba(255, 255, 255, 0.012) 1px,
+      transparent 1px
+    ),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.012) 1px, transparent 1px);
+  background-size: 64px 64px;
+}
+
+/* ── Noise overlay (subtle film grain) ─────────────── */
+
+.noise-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9998;
+  opacity: 0.022;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 180px 180px;
+}
+
+/* ── Section divider ───────────────────────────────── */
+
+.section-label {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--c-primary);
+  margin-bottom: 0.5rem;
+}
+
+/* ── Skill bar ─────────────────────────────────────── */
+
+.skill-track {
+  height: 2px;
+  background: rgba(255, 255, 255, 0.07);
+  border-radius: 1px;
+  overflow: hidden;
+}
